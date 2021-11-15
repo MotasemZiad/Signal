@@ -12,6 +12,8 @@ const paddingAll = 10.0;
 const cursorHeight = 22.0;
 const borderRadius = 12.0;
 
+const splashDuration = 1500; // Time in milliseconds
+
 // Firebase
 const username = 'username';
 const email = 'email';

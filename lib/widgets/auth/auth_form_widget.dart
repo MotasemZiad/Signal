@@ -78,6 +78,7 @@ class _AuthFormWidgetState extends State<AuthFormWidget> {
                   if (!_isLogin) UserImagePicker(pickImageFunction: _pickImage),
                   TextFormField(
                     key: const ValueKey('email'),
+                    autocorrect: false,
                     keyboardType: TextInputType.emailAddress,
                     decoration: const InputDecoration(
                       label: Text('Email'),
@@ -96,6 +97,7 @@ class _AuthFormWidgetState extends State<AuthFormWidget> {
                   if (!_isLogin)
                     TextFormField(
                       key: const ValueKey('username'),
+                      textCapitalization: TextCapitalization.words,
                       keyboardType: TextInputType.name,
                       decoration: const InputDecoration(
                         label: Text('Username'),

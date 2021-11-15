@@ -55,6 +55,7 @@ class _NewMessageWidgetState extends State<NewMessageWidget> {
           Expanded(
             child: TextField(
               controller: _messageController,
+              textCapitalization: TextCapitalization.sentences,
               decoration: const InputDecoration(hintText: 'Type a message...'),
               onChanged: (value) {
                 setState(() {
