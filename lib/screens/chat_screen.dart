@@ -1,12 +1,25 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:signal_chat/shared/global_widgets.dart';
 import 'package:signal_chat/utils/constants.dart';
 import 'package:signal_chat/widgets/chat/messages_widget.dart';
 import 'package:signal_chat/widgets/chat/new_message_widget.dart';
 
-class ChatScreen extends StatelessWidget {
+class ChatScreen extends StatefulWidget {
   const ChatScreen({Key? key}) : super(key: key);
+
+  @override
+  State<ChatScreen> createState() => _ChatScreenState();
+}
+
+class _ChatScreenState extends State<ChatScreen> {
+  @override
+  void initState() {
+    final fcm = FirebaseMessaging.instance;
+    fcm.requestPermission();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {

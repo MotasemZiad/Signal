@@ -1,13 +1,16 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
 class MessageBubbleWidget extends StatelessWidget {
   final String message;
   final String username;
+  final String userImage;
   final bool isMe;
   const MessageBubbleWidget({
     Key? key,
     required this.message,
     required this.username,
+    required this.userImage,
     required this.isMe,
   }) : super(key: key);
 
@@ -16,6 +19,12 @@ class MessageBubbleWidget extends StatelessWidget {
     return Row(
       mainAxisAlignment: isMe ? MainAxisAlignment.end : MainAxisAlignment.start,
       children: [
+        if (!isMe)
+          CircleAvatar(
+            backgroundColor: Colors.transparent,
+            backgroundImage: CachedNetworkImageProvider(userImage),
+            radius: 18.0,
+          ),
         Container(
           decoration: BoxDecoration(
             borderRadius: isMe
@@ -34,7 +43,7 @@ class MessageBubbleWidget extends StatelessWidget {
                 : Theme.of(context).colorScheme.primary,
           ),
           width: 180.0,
-          padding: const EdgeInsets.symmetric(horizontal: 12.0, vertical: 8.0),
+          padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 6.0),
           margin: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 4.0),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -45,13 +54,12 @@ class MessageBubbleWidget extends StatelessWidget {
                   style: TextStyle(
                     fontWeight: FontWeight.bold,
                     color: Theme.of(context).textTheme.headline1!.color,
-                    fontSize: 16.0,
                   ),
                 ),
               Text(
                 message,
-                style: TextStyle(
-                  color: Theme.of(context).secondaryHeaderColor,
+                style: const TextStyle(
+                  color: Colors.white,
                 ),
               ),
             ],

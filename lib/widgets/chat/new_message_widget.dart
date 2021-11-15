@@ -11,8 +11,14 @@ class NewMessageWidget extends StatefulWidget {
 }
 
 class _NewMessageWidgetState extends State<NewMessageWidget> {
-  final TextEditingController _messageController = TextEditingController();
+  late TextEditingController _messageController;
   var _enteredMessage = '';
+
+  @override
+  void initState() {
+    super.initState();
+    _messageController = TextEditingController();
+  }
 
   @override
   void dispose() {
@@ -32,8 +38,12 @@ class _NewMessageWidgetState extends State<NewMessageWidget> {
       'createdAt': Timestamp.now(),
       'userId': user.uid,
       'username': userData['username'],
+      'userImage': userData['imageUrl'],
     });
     _messageController.clear();
+    setState(() {
+      _enteredMessage = '';
+    });
   }
 
   @override
