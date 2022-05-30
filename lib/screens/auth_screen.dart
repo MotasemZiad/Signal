@@ -6,6 +6,7 @@ import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:signal_chat/helpers/firestore_helper.dart';
 import 'package:signal_chat/shared/global_widgets.dart';
 import 'package:signal_chat/utils/constants.dart';
 import 'package:signal_chat/widgets/auth/auth_form_widget.dart';
@@ -52,7 +53,7 @@ class _AuthScreenState extends State<AuthScreen> {
         final url = await ref.getDownloadURL();
 
         await FirebaseFirestore.instance
-            .collection('users')
+            .collection(FirestoreHelper.usersCollection)
             .doc(userCredential.user!.uid)
             .set({
           'username': username,
